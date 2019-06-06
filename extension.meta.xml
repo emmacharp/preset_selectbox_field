@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="preset_selectbox_field" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
+	<name>Field: Preset Selectbox</name>
+	<description>
+		Simple field with multiple UX with presets and values fetched from a JSON file
+	</description>
+	<types>
+		<type>Field</type>
+	</types>
+	<authors>
+		<author>
+			<name github="fhamon" symphony="fhamon" twitter="FrederickHamon">Frédérick Hamon</name>
+		</author>
+		<author>
+			<name github="DeuxHuitHuit" symphony="nitriques" twitter="DeuxHuitHuit">Deux Huit Huit</name>
+			<website>https://deuxhuithuit.com/</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="1.1.0" date="2019-06-06" min="4.0.0" max="4.x.x">
+			- UI Tweaking
+			- Fixed values with commas in them
+		</release>
+		<release version="1.0.0" date="2018-12-01" min="4.0.0" max="4.x.x">
+			- JS custom behaviour
+			- Multiple selection
+			- Field styling tweaks
+		</release>
+		<release version="0.1.0" date="2018-11-13" min="4.0.0" max="4.x.x">
+			- Initial release
+		</release>
+	</releases>
+</extension>
