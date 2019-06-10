@@ -342,12 +342,18 @@
 
             $list = new XMLElement($this->get('element_name'));
 
-
             if (!is_array($data['handle']) and !is_array($data['value'])) {
-                $data = array(
-                    'handle'	=> str_getcsv($data['handle']),
-                    'value'		=> str_getcsv($data['value']),
-                );
+                if ($data['value'] !== 'null') {
+                    $data = array(
+                        'handle'	=> str_getcsv($data['handle']),
+                        'value'		=> str_getcsv($data['value']),
+                    );
+                } else {
+                    $data = array(
+                        'value' => array(),
+                        'handle' => array(),
+                    );
+                }
             }
 
             foreach ($data['value'] as $index => $value) {
@@ -360,7 +366,9 @@
                 ));
             }
 
-            $wrapper->appendChild($list);
+            if (!empty($list->getNumberOfChildren())) {
+                $wrapper->appendChild($list);
+            }
         }
 
         public function prepareTableValue($data, XMLElement $link=NULL, $entry_id = null){
