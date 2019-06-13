@@ -260,6 +260,10 @@
                     $lbl = new XMLElement('label');
                     $lbl->setAttribute('for', $id);
 
+                    if (!empty($value->description)) {
+                        $lbl->setAttribute('title', $value->description);
+                    }
+
                     if (!empty($value->svg)) {
                         $svg = new XMLElement('span', $value->svg);
                         $svg->addClass('icon');
