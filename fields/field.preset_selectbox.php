@@ -314,6 +314,8 @@
                 $label->appendChild($toggleCtn);
             }
 
+            $wrapper->setAttribute('data-preset', $this->get('presets'));
+
             if($flagWithError != null) $wrapper->appendChild(Widget::Error($label, $flagWithError));
             else $wrapper->appendChild($label);
         }
