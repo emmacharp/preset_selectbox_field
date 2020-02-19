@@ -236,15 +236,13 @@
             }
 
             $label = Widget::Label();
-            $fieldLabelCtn = new XMLElement('span', null, array('class' => 'preset-selectbox-label-ctn'));
             $fieldLabel = new XMLElement('span', $this->get('label'));
-            $fieldLabelCtn->appendChild($fieldLabel);
+            $label->appendChild($fieldLabel);
 
             if($this->get('required') != 'yes') {
-                $fieldLabelCtn->appendChild(new XMLElement('i', __('Optional')));
+                $label->appendChild(new XMLElement('i', __('Optional')));
             }
 
-            $label->appendChild($fieldLabelCtn);
 
             $selectCtn = new XMLElement('div', null, array('class' => 'preset-selectbox-wrapper'));
             $select = new XMLElement('div');
@@ -265,7 +263,7 @@
                     }
 
                     if (!empty($value->svg)) {
-                        $svg = new XMLElement('span', $value->svg);
+                        $svg = new XMLElement('div', $value->svg);
                         $svg->addClass('icon');
                         $lbl->appendChild($svg);
                         if ($value->label) {
@@ -293,7 +291,11 @@
                 }
             }
             $selectCtn->appendChild($select);
-            $label->appendChild($selectCtn);
+
+            if($flagWithError != null) $wrapper->appendChild(Widget::Error($label, $flagWithError));
+            else $wrapper->appendChild($label);
+
+            $wrapper->appendChild($selectCtn);
 
             if ($this->get('allow_toggle') === 'yes' && $this->get('required') === 'no') {
                 $toggleCtn = new XMLElement('label', null, array('class' => 'preset-selectbox-toggle'));
@@ -311,13 +313,11 @@
                 $icons->appendChild('<svg class="plus" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0V10" stroke="currentColor" stroke-width="2"/><path d="M10 5L-4.76837e-07 5" stroke="currentColor" stroke-width="2"/></svg>');
                 $icons->appendChild('<svg class="minus" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 5H1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>');
                 $toggleCtn->appendChild($icons);
-                $label->appendChild($toggleCtn);
+                $wrapper->appendChild($toggleCtn);
             }
 
             $wrapper->setAttribute('data-preset', $this->get('presets'));
 
-            if($flagWithError != null) $wrapper->appendChild(Widget::Error($label, $flagWithError));
-            else $wrapper->appendChild($label);
         }
 
         public function processRawFieldData($data, &$status, &$message = null, $simulate = false, $entry_id = null) {
