@@ -68,7 +68,7 @@
 		var content = t.closest(sels.content);
 		var inputs = content.find(sels.inputs).not(t);
 
-		if (!content.attr('data-multiple')) {
+		if (content.attr('data-multiple') === 'false') {
 			inputs.prop('checked', false);
 		}
 	};
